@@ -1,0 +1,12 @@
+server:
+  port: ${rest.port}
+  context-path: /sbm/
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: ${mysql.url}
+    username: ${mysql.username}
+    password: ${mysql.password}
+
