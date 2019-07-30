@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,18 @@ public class UserController {
     //这里使用@RequestMapping注解表示该方法对应的二级上下文路径
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     String login(@RequestParam(value = "userName") String userName,
-                 @RequestParam(value = "pwd") String pwd) {
-        return userName + "登陆成功";
+                 @RequestParam(value = "pwd") String pwd) throws JsonProcessingException {
+        return service.login(userName, pwd);
     }
 
-    @RequestMapping(value = "/getUserName", method = RequestMethod.GET)
-    List<Map<String, Object>> getUserName() {
-        return service.getUserName();
+//    @RequestMapping(value = "/getUserName", method = RequestMethod.GET)
+//    List<Map<String, Object>> getUserName() {
+//        return service.getUserName();
+//    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    String register(@RequestParam(value = "userName") String userName,
+                    @RequestParam(value = "pwd") String pwd) throws JsonProcessingException {
+        return service.register(userName, pwd);
     }
 }
